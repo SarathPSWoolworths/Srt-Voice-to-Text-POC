@@ -1,9 +1,5 @@
 <div style="display: flex; align-items: center; justify-content: left">
-  <input
-    type="text"
-    style="height: 30px; width: 1000px"
-    [value]="service.text"
-  />
+  <input type="text" style="height: 30px; width: 80%" [value]="service.text" />
   <button
     class="transparent"
     (click)="isStillRecoginze ? stopService() : startService()"

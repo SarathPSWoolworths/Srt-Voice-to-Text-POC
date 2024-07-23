@@ -7,18 +7,19 @@ declare var webkitSpeechRecognition: any;
 export class VoiceToSpeechService {
   recognition = new webkitSpeechRecognition();
   isStoppedSpeechRecog = false;
-  public text = '';
+  public text: string = '';
+  public status: string[] = [];
   tempWords: any;
   transcript_arr: any = [];
   confidence_arr: any = [];
-  isStarted = false; //<< this Flag to check if the user stop the service
-  isStoppedAutomatically = true; //<< this Flag to check if the service stopped automaticically.
+  isStarted = false;
+  isStoppedAutomatically = true;
   constructor() { }
 
   init() {
     this.recognition.continuous = true;
     this.recognition.interimResults = true;
-    this.recognition.lang = 'en-US';
+    this.recognition.lang = 'en-IN';
 
     this.recognition.addEventListener('result', (e: any) => {
       const transcript = Array.from(e.results)
@@ -27,23 +28,23 @@ export class VoiceToSpeechService {
         .join('');
       this.transcript_arr.push(transcript);
       this.tempWords = transcript;
-      console.log(this.transcript_arr);
+      this.status.push('Transcript Text: ' + this.transcript_arr);
 
       const confidence = Array.from(e.results)
         .map((result: any) => result[0])
         .map((result) => result.confidence)
         .join('');
       this.confidence_arr.push(confidence);
-      console.log(this.confidence_arr);
+      this.status.push('Confidence Score : ' + this.confidence_arr);
     });
 
     this.recognition.addEventListener('end', (condition: any) => {
       this.wordConcat();
       if (this.isStoppedAutomatically) {
         this.recognition.stop();
-        console.log('stopped automatically!!');
+        this.status.push('stopped automatically!!');
         this.recognition.start();
-        console.log('started automatically!!');
+        this.status.push('started automatically!!');
         this.isStoppedAutomatically = true;
       }
     });
@@ -53,7 +54,7 @@ export class VoiceToSpeechService {
     if (!this.isStarted) {
       this.recognition.start();
       this.isStarted = true;
-      console.log('Speech recognition started');
+      this.status.push('Speech recognition started');
     }
     return true;
   }
@@ -63,7 +64,7 @@ export class VoiceToSpeechService {
       this.wordConcat();
       this.recognition.stop();
       this.isStarted = false;
-      console.log('End speech recognition by user');
+      this.status.push('End speech recognition by user');
     }
     return false;
   }

@@ -1,6 +1,22 @@
-<div style="margin: 100px">
-  <h1>Voice recognition</h1>
-  <button style="margin: 10px" (click)="startService()">Start</button>
-  <button style="margin: 10px" (click)="stopService()">Stop</button>
-  <p>{{ service.text }}</p>
+<div style="display: flex; align-items: center; justify-content: left">
+  <input
+    type="text"
+    style="height: 30px; width: 1000px"
+    [value]="service.text"
+  />
+  <button
+    class="transparent"
+    (click)="isStillRecoginze ? stopService() : startService()"
+  >
+    <img
+      style="width: 28px"
+      [src]="isStillRecoginze ? 'close-mic.svg' : 'open-mic.svg'"
+    />
+  </button>
 </div>
+
+@for (staus of service.status; track staus) {
+<ul>
+  <li>{{ staus }}</li>
+</ul>
+}

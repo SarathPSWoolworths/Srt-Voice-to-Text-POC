@@ -1,5 +1,5 @@
 <div class="center-div">
-  <h1>SRT 'Voice to Text' POC</h1>
+  <h1>Voice to Text</h1>
   <a
     title="open github"
     target="_blank"
@@ -16,7 +16,7 @@
     (click)="isStillRecoginze ? stopService() : startService()"
   >
     <img
-      class="icon"
+      [class]="isStillRecoginze ? 'icon pulse-ring' : 'icon'"
       alt="mic"
       [src]="isStillRecoginze ? 'close-mic.svg' : 'open-mic.svg'"
     />

@@ -1,18 +1,28 @@
-<div style="display: flex; align-items: center; justify-content: left">
-  <input type="text" style="height: 30px; width: 80%" [value]="service.text" />
+<div class="center-div">
+  <h1>SRT 'Voice to Text' POC</h1>
+  <a
+    title="open github"
+    target="_blank"
+    href="https://github.com/SarathPSWoolworths/Srt-Voice-to-Text-POC"
+  >
+    <img class="icon" alt="github" src="github.svg"
+  /></a>
+</div>
+
+<div class="input-icons">
+  <input class="input-field" type="text" [value]="service.text" />
   <button
     class="transparent"
     (click)="isStillRecoginze ? stopService() : startService()"
   >
     <img
-      style="width: 28px"
+      class="icon"
+      alt="mic"
       [src]="isStillRecoginze ? 'close-mic.svg' : 'open-mic.svg'"
     />
   </button>
 </div>
 
 @for (staus of service.status; track staus) {
-<ul>
-  <li>{{ staus }}</li>
-</ul>
+<div class="center-div">{{ staus }}</div>
 }

@@ -9,7 +9,7 @@ export class VoiceToSpeechService {
   isStoppedSpeechRecog = false;
   public text: string = '';
   public status: string[] = [];
-  tempWords: any;
+  tempWords: any = '';
   transcript_arr: any = [];
   confidence_arr: any = [];
   isStarted = false;
@@ -18,7 +18,7 @@ export class VoiceToSpeechService {
 
   init() {
     this.recognition.continuous = true;
-    this.recognition.interimResults = true;
+    this.recognition.interimResults = false;
     this.recognition.lang = 'en-IN';
 
     this.recognition.addEventListener('result', (e: any) => {
@@ -30,11 +30,12 @@ export class VoiceToSpeechService {
       this.tempWords = transcript;
       this.status.push('Transcript Text: ' + this.transcript_arr);
 
-      const confidence = Array.from(e.results)
+      const confidence: any = Array.from(e.results)
         .map((result: any) => result[0])
         .map((result) => result.confidence)
         .join('');
-      this.confidence_arr.push(confidence);
+      let confidence_score: string = (parseFloat(confidence) * 100).toFixed(2) + ' %';
+      this.confidence_arr.push(confidence_score);
       this.status.push('Confidence Score : ' + this.confidence_arr);
     });
 
@@ -70,7 +71,7 @@ export class VoiceToSpeechService {
   }
 
   wordConcat() {
-    this.text = this.text + ' ' + this.tempWords + '.';
+    this.text = this.text + ' ' + this.tempWords;
     this.tempWords = '';
   }
 }

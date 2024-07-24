@@ -8,6 +8,45 @@
     <img class="icon" alt="github" src="github.svg"
   /></a>
 </div>
+<div class="center-div">
+  <h3>Choose Language</h3>
+  &nbsp;:&nbsp;
+
+  <label class="radio-button">
+    <input type="radio" name="radio" (change)="setLang('en-AU')" />
+    <span class="label-visible">
+      <span class="fake-radiobutton"></span>
+      English (Australia)
+    </span>
+  </label>
+  <label class="radio-button">
+    <input
+      type="radio"
+      name="radio"
+      (change)="setLang('en-IN')"
+      checked="checked"
+    />
+    <span class="label-visible">
+      <span class="fake-radiobutton"></span>
+      English (India)
+    </span>
+  </label>
+
+  <label class="radio-button">
+    <input type="radio" name="radio" (change)="setLang('en-NZ')" />
+    <span class="label-visible">
+      <span class="fake-radiobutton"></span>
+      English (New Zealand)
+    </span>
+  </label>
+  <label class="radio-button">
+    <input type="radio" name="radio" (change)="setLang('en-US')" />
+    <span class="label-visible">
+      <span class="fake-radiobutton"></span>
+      English (USA)
+    </span>
+  </label>
+</div>
 
 <div class="input-icons">
   <input class="input-field" type="text" [value]="service.text" />

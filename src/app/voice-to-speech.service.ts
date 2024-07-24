@@ -16,10 +16,10 @@ export class VoiceToSpeechService {
   isStoppedAutomatically = true;
   constructor() { }
 
-  init() {
+  init(lang: string = 'en-IN') {
     this.recognition.continuous = true;
     this.recognition.interimResults = false;
-    this.recognition.lang = 'en-IN';
+    this.recognition.lang = lang;
 
     this.recognition.addEventListener('result', (e: any) => {
       const transcript = Array.from(e.results)

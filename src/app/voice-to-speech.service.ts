@@ -9,36 +9,37 @@ export class VoiceToSpeechService {
   isStoppedSpeechRecog = false;
   public text: string = '';
   public status: string[] = [];
+  language: string = 'en-IN';
   tempWords: any = '';
-  transcript_arr: any = [];
-  confidence_arr: any = [];
+  transcriptList: any = [];
+  confidenceList: any = [];
   isStarted = false;
   isStoppedAutomatically = true;
   constructor() { }
-
-  init(lang: string = 'en-IN') {
+  public setLang(lang: string = 'en-IN') {
+    this.language = lang;
+    this.recognition.lang = this.language;
+  }
+  init() {
     this.recognition.continuous = true;
     this.recognition.interimResults = false;
-    this.recognition.lang = lang;
-
+    this.recognition.lang = this.language;
     this.recognition.addEventListener('result', (e: any) => {
       const transcript = Array.from(e.results)
         .map((result: any) => result[0])
         .map((result) => result.transcript)
         .join('');
-      this.transcript_arr.push(transcript);
+      this.transcriptList.push(transcript);
       this.tempWords = transcript;
-      this.status.push('Transcript Text: ' + this.transcript_arr);
-
+      this.status.push('Transcript Text: ' + this.transcriptList);
       const confidence: any = Array.from(e.results)
         .map((result: any) => result[0])
         .map((result) => result.confidence)
         .join('');
       let confidence_score: string = (parseFloat(confidence) * 100).toFixed(2) + ' %';
-      this.confidence_arr.push(confidence_score);
-      this.status.push('Confidence Score : ' + this.confidence_arr);
+      this.confidenceList.push(confidence_score);
+      this.status.push('Confidence Score : ' + this.confidenceList);
     });
-
     this.recognition.addEventListener('end', (condition: any) => {
       this.wordConcat();
       if (this.isStoppedAutomatically) {
@@ -69,7 +70,6 @@ export class VoiceToSpeechService {
     }
     return false;
   }
-
   wordConcat() {
     this.text = this.text + ' ' + this.tempWords;
     this.tempWords = '';

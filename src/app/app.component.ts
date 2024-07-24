@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void { }
   setLang(lang: string) {
-    this.service.init(lang);
+    this.service.setLang(lang);
   }
 
   startService() {

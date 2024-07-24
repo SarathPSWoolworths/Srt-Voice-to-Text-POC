@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 declare var webkitSpeechRecognition: any;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -51,7 +50,6 @@ export class VoiceToSpeechService {
       }
     });
   }
-
   start() {
     if (!this.isStarted) {
       this.recognition.start();

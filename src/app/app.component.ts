@@ -24,11 +24,11 @@ export class AppComponent implements OnInit {
   startService() {
     this.service.text = '';
     this.isStillRecoginze = this.service.start() === true ? true : false;
-    setTimeout(() => {
-      if (this.isStillRecoginze) {
-        this.stopService();
-      }
-    }, 5000);
+    // setTimeout(() => {
+    //   if (this.isStillRecoginze) {
+    //     this.stopService();
+    //   }
+    // }, 5000);
 
   }
 

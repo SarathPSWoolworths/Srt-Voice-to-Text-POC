@@ -19,36 +19,40 @@ export class VoiceToSpeechService {
     this.language = lang;
     this.recognition.lang = this.language;
   }
+  resultListner = (e: any) => {
+    console.log(e);
+    const transcript = Array.from(e.results)
+      .map((result: any) => result[0]) 
+      .map((result) => result.transcript)
+      .join('');
+    this.transcriptList.push(transcript);
+    this.tempWords = transcript;
+    this.status.push('Transcript Text: ' + this.transcriptList);
+    const confidence: any = Array.from(e.results)
+      .map((result: any) => result[0])
+      .map((result) => result.confidence)
+      .join('');
+    let confidence_score: string = (parseFloat(confidence) * 100).toFixed(2) + ' %';
+    this.confidenceList.push(confidence_score);
+    this.status.push('Confidence Score : ' + this.confidenceList);
+  }
+  endListner = (e: any) => {
+    console.log(e);
+    this.wordConcat();
+    if (this.isStoppedAutomatically) {
+      this.recognition.stop();
+      this.status.push('stopped automatically!!');
+      this.recognition.start();
+      this.status.push('started automatically!!');
+      this.isStoppedAutomatically = true;
+    }
+  }
   init() {
     this.recognition.continuous = true;
     this.recognition.interimResults = false;
     this.recognition.lang = this.language;
-    this.recognition.addEventListener('result', (e: any) => {
-      const transcript = Array.from(e.results)
-        .map((result: any) => result[0])
-        .map((result) => result.transcript)
-        .join('');
-      this.transcriptList.push(transcript);
-      this.tempWords = transcript;
-      this.status.push('Transcript Text: ' + this.transcriptList);
-      const confidence: any = Array.from(e.results)
-        .map((result: any) => result[0])
-        .map((result) => result.confidence)
-        .join('');
-      let confidence_score: string = (parseFloat(confidence) * 100).toFixed(2) + ' %';
-      this.confidenceList.push(confidence_score);
-      this.status.push('Confidence Score : ' + this.confidenceList);
-    });
-    this.recognition.addEventListener('end', (condition: any) => {
-      this.wordConcat();
-      if (this.isStoppedAutomatically) {
-        this.recognition.stop();
-        this.status.push('stopped automatically!!');
-        this.recognition.start();
-        this.status.push('started automatically!!');
-        this.isStoppedAutomatically = true;
-      }
-    });
+    this.recognition.addEventListener('result', this.resultListner);
+    this.recognition.addEventListener('end', this.endListner);
   }
   start() {
     if (!this.isStarted) {

@@ -27,12 +27,22 @@ describe('VoiceToSpeechServiceService', () => {
     // expect(service.text).toEqual('1 1');
     // expect(service.tempWords).toEqual('');
   });
-
   it('should have start', () => {
     expect(service.start).toBeTruthy();
     const startSpy = spyOn(service, 'start');
     service.start();
     expect(startSpy).toHaveBeenCalledTimes(1);
-
+  });
+  it('should have result listner', () => {
+    expect(service.resultListner).toBeTruthy();
+    const resultListnerSpy = spyOn(service, 'resultListner');
+    service.resultListner(null);
+    expect(resultListnerSpy).toHaveBeenCalledTimes(1);
+  });
+  it('should have end listner', () => {
+    expect(service.endListner).toBeTruthy();
+    const endListnerSpy = spyOn(service, 'endListner');
+    service.endListner(null);
+    expect(endListnerSpy).toHaveBeenCalledTimes(1);
   });
 });

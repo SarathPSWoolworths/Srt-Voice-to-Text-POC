@@ -22,7 +22,7 @@ export class VoiceToSpeechService {
   resultListner = (e: any) => {
     console.log(e);
     const transcript = Array.from(e.results)
-      .map((result: any) => result[0]) 
+      .map((result: any) => result[0])
       .map((result) => result.transcript)
       .join('');
     this.transcriptList.push(transcript);
@@ -53,6 +53,7 @@ export class VoiceToSpeechService {
     this.recognition.lang = this.language;
     this.recognition.addEventListener('result', this.resultListner);
     this.recognition.addEventListener('end', this.endListner);
+    return true;
   }
   start() {
     if (!this.isStarted) {

@@ -1,4 +1,9 @@
-button.transparent {
+.icon {
+  padding: 10px 20px 0px;
+  width: 28px;
+}
+
+button.transparent-mic-button {
   background-color: transparent;
   background-repeat: no-repeat;
   border: none;
@@ -7,30 +12,40 @@ button.transparent {
   outline: none;
 }
 
-.icon {
-  padding: 10px 20px 0px;
-  width: 28px;
-}
 .select-field {
   margin-left: 25px;
   margin-top: 10px;
+  font-size: 14px;
 }
-
+.mic-area {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.mic-button-text {
+  font-size: 20px;
+  color: #bd2121;
+}
 .input-text-area {
   padding: 10px;
   font-size: 20px;
   margin: 10px;
-  width: 450px;
+  width: 400px;
   height: 80px;
 }
 
 .center-div {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
 }
-
+.no-pulse-ring {
+  padding: 10px 20px 0px;
+  width: 28px;
+}
 .pulse-ring {
+  padding: 10px 20px 0px;
+  width: 28px;
   border-radius: 50%;
   animation: pulsate infinite 1s;
 }

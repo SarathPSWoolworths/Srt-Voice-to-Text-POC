@@ -12,24 +12,24 @@
     <option selected value="en-IN">English (India)</option>
     <option value="en-US">English (USA)</option>
   </select>
+</div>
+<div class="mic-area">
+  <textarea
+    class="input-text-area"
+    placeholder="Text Area"
+    [value]="service.text"
+  ></textarea>
   <button
-    class="transparent"
+    class="transparent-mic-button"
     (click)="isStillRecoginze ? stopService() : startService()"
   >
     <img
-      [class]="isStillRecoginze ? 'icon pulse-ring' : 'icon'"
+      [class]="isStillRecoginze ? 'pulse-ring' : 'no-pulse-ring'"
       alt="mic"
       [src]="isStillRecoginze ? 'close-mic.svg' : 'open-mic.svg'"
     />
   </button>
 </div>
-
-<textarea
-  class="input-text-area"
-  placeholder="Text Area"
-  [value]="service.text"
-></textarea>
-
 @for (staus of service.status; track staus) {
 <div class="center-div">{{ staus }}</div>
 }

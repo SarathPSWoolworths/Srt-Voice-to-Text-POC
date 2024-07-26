@@ -13,14 +13,14 @@ export class VoiceToSpeechService {
   transcriptList: any = [];
   confidenceList: any = [];
   isStarted = false;
-  isStoppedAutomatically = true;
+  // isStoppedAutomatically = true;
   constructor() { }
   public setLang(lang: string = 'en-IN') {
     this.language = lang;
     this.recognition.lang = this.language;
   }
   resultListner = (e: any) => {
-    console.log(e);
+    //console.log('resultListner', Array.from(e.results)[0]);
     const transcript = Array.from(e.results)
       .map((result: any) => result[0])
       .map((result) => result.transcript)
@@ -37,15 +37,15 @@ export class VoiceToSpeechService {
     this.status.push('Confidence Score : ' + this.confidenceList);
   }
   endListner = (e: any) => {
-    console.log(e);
+    //console.log('endListner', e);
     this.wordConcat();
-    if (this.isStoppedAutomatically) {
-      this.recognition.stop();
-      this.status.push('stopped automatically!!');
-      this.recognition.start();
-      this.status.push('started automatically!!');
-      this.isStoppedAutomatically = true;
-    }
+    // if (this.isStoppedAutomatically) {
+    //   this.recognition.stop();
+    //   this.status.push('Speech recognition stopped automatically!!');
+    //   this.recognition.start();
+    //   this.status.push('Speech recognition automatically!!');
+    //   this.isStoppedAutomatically = true;
+    // }
   }
   init() {
     this.recognition.continuous = true;
@@ -65,11 +65,11 @@ export class VoiceToSpeechService {
   }
   stop() {
     if (this.isStarted) {
-      this.isStoppedAutomatically = false;
+      // this.isStoppedAutomatically = false;
       this.wordConcat();
       this.recognition.stop();
       this.isStarted = false;
-      this.status.push('End speech recognition by user');
+      this.status.push('Speech recognition stopped by user');
     }
     return false;
   }

@@ -1,5 +1,4 @@
 .icon {
-  padding: 10px 20px 0px;
   width: 28px;
 }
 
@@ -13,8 +12,6 @@ button.transparent-mic-button {
 }
 
 .select-field {
-  margin-left: 25px;
-  margin-top: 10px;
   font-size: 14px;
 }
 .mic-area {
@@ -30,14 +27,16 @@ button.transparent-mic-button {
   padding: 10px;
   font-size: 20px;
   margin: 10px;
-  width: 400px;
-  height: 80px;
+  min-height: 80px;
+  min-width: 250px;
 }
 
 .center-div {
+  padding-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 10px;
 }
 .no-pulse-ring {
   padding: 10px 20px 0px;

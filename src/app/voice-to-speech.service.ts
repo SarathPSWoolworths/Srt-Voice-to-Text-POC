@@ -10,8 +10,8 @@ export class VoiceToSpeechService {
   public status: string[] = [];
   language: string = 'en-IN';
   tempWords: any = '';
-  transcriptList: any = [];
-  confidenceList: any = [];
+  transcriptText: any = '';
+  confidenceScore: any = '';
   isStarted = false;
   // isStoppedAutomatically = true;
   constructor() { }
@@ -25,16 +25,16 @@ export class VoiceToSpeechService {
       .map((result: any) => result[0])
       .map((result) => result.transcript)
       .join('');
-    this.transcriptList.push(transcript);
+    this.transcriptText = (transcript);
     this.tempWords = transcript;
-    this.status.push('Transcript Text: ' + this.transcriptList);
+    this.status.push('Transcript Text : ' + this.transcriptText);
     const confidence: any = Array.from(e.results)
       .map((result: any) => result[0])
       .map((result) => result.confidence)
       .join('');
     let confidence_score: string = (parseFloat(confidence) * 100).toFixed(2) + ' %';
-    this.confidenceList.push(confidence_score);
-    this.status.push('Confidence Score : ' + this.confidenceList);
+    this.confidenceScore = (confidence_score);
+    this.status.push('Confidence Score : ' + this.confidenceScore);
   }
   endListner = (e: any) => {
     //console.log('endListner', e);

@@ -7,31 +7,27 @@ button.transparent {
   outline: none;
 }
 
-.input-icons {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: stretch;
-  justify-content: stretch;
-}
-
 .icon {
   padding: 10px 20px 0px;
   width: 28px;
 }
+.select-field {
+  margin-left: 25px;
+  margin-top: 10px;
+}
 
-.input-field {
+.input-text-area {
   padding: 10px;
-  font-size: 32px;
-  text-align: stretch;
-  height: 30px;
-  width: 60vw;
+  font-size: 20px;
+  margin: 10px;
+  width: 450px;
+  height: 80px;
 }
 
 .center-div {
   display: flex;
   align-items: center;
-  justify-content: stretch;
-  padding-bottom: 2px;
+  justify-content: left;
 }
 
 .pulse-ring {

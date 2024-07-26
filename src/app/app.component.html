@@ -1,5 +1,4 @@
 <div class="center-div">
-  <h1>Voice to Text</h1>
   <a
     title="open github"
     target="_blank"
@@ -7,48 +6,12 @@
   >
     <img class="icon" alt="github" src="github.svg"
   /></a>
-</div>
-<div class="center-div">
-  <h3>Choose Language</h3>
-  &nbsp;:&nbsp;
-  <label class="radio-button">
-    <input type="radio" name="radio" (change)="setLang('en-AU')" />
-    <span class="label-visible">
-      <span class="fake-radiobutton"></span>
-      English (Australia)
-    </span>
-  </label>
-  <label class="radio-button">
-    <input
-      type="radio"
-      name="radio"
-      (change)="setLang('en-IN')"
-      checked="checked"
-    />
-    <span class="label-visible">
-      <span class="fake-radiobutton"></span>
-      English (India)
-    </span>
-  </label>
-
-  <label class="radio-button">
-    <input type="radio" name="radio" (change)="setLang('en-NZ')" />
-    <span class="label-visible">
-      <span class="fake-radiobutton"></span>
-      English (New Zealand)
-    </span>
-  </label>
-  <label class="radio-button">
-    <input type="radio" name="radio" (change)="setLang('en-US')" />
-    <span class="label-visible">
-      <span class="fake-radiobutton"></span>
-      English (USA)
-    </span>
-  </label>
-</div>
-
-<div class="input-icons">
-  <input class="input-field" type="text" [value]="service.text" />
+  <h1>Voice to Text</h1>
+  <select class="select-field" #langVal (change)="setLang(langVal.value)">
+    <option value="en-AU">English (Australia)</option>
+    <option selected value="en-IN">English (India)</option>
+    <option value="en-US">English (USA)</option>
+  </select>
   <button
     class="transparent"
     (click)="isStillRecoginze ? stopService() : startService()"
@@ -60,6 +23,12 @@
     />
   </button>
 </div>
+
+<textarea
+  class="input-text-area"
+  placeholder="Text Area"
+  [value]="service.text"
+></textarea>
 
 @for (staus of service.status; track staus) {
 <div class="center-div">{{ staus }}</div>

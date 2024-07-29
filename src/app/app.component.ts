@@ -22,9 +22,9 @@ export class AppComponent implements OnInit {
   }
   startService() {
     this.service.text = '';
-    this.isStillRecoginze = this.service.start() === true ? true : false;
+    this.isStillRecoginze = this.service.start();
   }
   stopService() {
-    this.isStillRecoginze = this.service.stop() === false ? false : true;
+    this.isStillRecoginze = this.service.stop();
   }
 }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
 import { VoiceToSpeechService } from './voice-to-speech.service';
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {

@@ -20,24 +20,22 @@ export class VoiceToSpeechService {
     this.recognition.lang = this.language;
   }
   resultListner = (e: any) => {
-    //console.log('resultListner', Array.from(e.results)[0]);
     const transcript = Array.from(e.results)
       .map((result: any) => result[0])
       .map((result) => result.transcript)
       .join('');
-    this.transcriptText = (transcript);
+    this.transcriptText = transcript;
     this.tempWords = transcript;
     this.status.push('Transcript Text : ' + this.transcriptText);
     const confidence: any = Array.from(e.results)
       .map((result: any) => result[0])
       .map((result) => result.confidence)
       .join('');
-    let confidence_score: string = (parseFloat(confidence) * 100).toFixed(2) + ' %';
-    this.confidenceScore = (confidence_score);
+    this.confidenceScore = (parseFloat(confidence) * 100).toFixed(2) + ' %';
     this.status.push('Confidence Score : ' + this.confidenceScore);
+    return true;
   }
   endListner = (e: any) => {
-    //console.log('endListner', e);
     this.wordConcat();
     // if (this.isStoppedAutomatically) {
     //   this.recognition.stop();
@@ -46,6 +44,7 @@ export class VoiceToSpeechService {
     //   this.status.push('Speech recognition automatically!!');
     //   this.isStoppedAutomatically = true;
     // }
+    return true;
   }
   init() {
     this.recognition.continuous = true;

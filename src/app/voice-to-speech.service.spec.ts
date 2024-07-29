@@ -9,10 +9,15 @@ describe('VoiceToSpeechServiceService', () => {
   });
   it('should be created', () => {
     expect(service).toBeTruthy();
+    expect(service.init).toBeDefined();
+    expect(service.start).toBeDefined();
+    expect(service.stop).toBeDefined();
+    expect(service.wordConcat).toBeDefined();
   });
   it('should have setLang', () => {
     expect(service.setLang).toBeTruthy();
     service.setLang('abc');
+    service.setLang(undefined);
   });
   it('should have wordConcat', () => {
     expect(service.wordConcat).toBeTruthy();
@@ -31,5 +36,10 @@ describe('VoiceToSpeechServiceService', () => {
     expect(service.start()).toBeTruthy();
     expect(service.stop()).toBeFalsy();
   });
-
+  it('should have resultListner', () => {
+    expect(service.resultListner({ "results": [[{ "confidence": ".910", "transcript": "test" }]] })).toBeTruthy();
+  });
+  it('should have endListner', () => {
+    expect(service.endListner(null)).toBeTruthy();
+  });
 });

@@ -20,16 +20,24 @@
     placeholder="Text Area"
     [value]="service.text"
   ></textarea>
-  <button
-    class="transparent-mic-button"
-    (click)="isStillRecoginze ? stopService() : startService()"
-  >
-    <img
-      [class]="isStillRecoginze ? 'pulse-ring' : 'no-pulse-ring'"
-      alt="mic"
-      [src]="isStillRecoginze ? 'close-mic.svg' : 'open-mic.svg'"
-    />
-  </button>
+  <div class="click-here-area">
+    @if(!isStillRecoginze){
+    <span class="text-strong">start recording</span>
+    } @else {
+    <span class="text-strong">stop recording</span>
+    }
+    <img alt="click here" class="icon-arrow" src="arrow.svg" />
+    <button
+      class="transparent-mic-button"
+      (click)="isStillRecoginze ? stopService() : startService()"
+    >
+      <img
+        [class]="isStillRecoginze ? 'pulse-ring' : 'no-pulse-ring'"
+        alt="mic"
+        [src]="isStillRecoginze ? 'close-mic.svg' : 'open-mic.svg'"
+      />
+    </button>
+  </div>
 </div>
 @for (staus of service.status; track staus) {
 <div class="center-div">{{ staus }}</div>

@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     this.service.setLang(lang);
   }
   startService() {
-    this.service.text = '';
+    // this.service.text = '';
     this.isStillRecoginze = this.service.start();
   }
   stopService() {
